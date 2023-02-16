@@ -43,8 +43,6 @@ class Shape {
 
     this.shape = shape;
 
-    this.rotation = shape;
-
     this.currentRotation = 0;
 
     this.set();
@@ -59,7 +57,7 @@ class Shape {
   }
 
   set() {
-    for (const square of this.rotation[this.currentRotation]) {
+    for (const square of this.shape[this.currentRotation]) {
       this.boundingBox[square.row][square.col] = true;
     }
   }

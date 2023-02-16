@@ -31,6 +31,7 @@ npm run dev
     * Points
 * Make examples with custum "renderer"
 * Debug mode
+* Tests
 * NPM package
 * JSDoc
 
