@@ -75,13 +75,36 @@ class CollisionDetector {
     return false;
   }
 
-  rotationColliding(grid, rotatedShape) {
-    //TODO
-    /*const positions = this.#shapePosition(grid, rotatedShape);
+  rotationColliding(grid, shape, rotatedShape) {
+    const positions = [];
+    const gridRow = shape.position.row;
+    const gridCol = shape.position.col;
+
+    for (let row = 0; row < rotatedShape.boundingBox.length; row++) {
+      for (let col = 0; col < rotatedShape.boundingBox.length; col++) {
+        try {
+          if (rotatedShape.boundingBox[row][col]) {
+            positions.push({
+              row: gridRow + row,
+              col: gridCol + col
+            });
+          }
+        } catch (e) {
+          continue;
+        }
+      }
+    }
 
     for (const square of positions) {
-      console.log(square);
-    }*/
+      try {
+        if (grid[square.row][square.col].occupied) {
+          return true;
+        }
+      } catch (e) {
+        return true;
+      }
+    }
+
     return false;
   }
 }

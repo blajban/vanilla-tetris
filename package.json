@@ -4,12 +4,19 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --collectCoverage",
     "dev": "node server.js"
+  },
+  "type": "module",
+  "jest": {
+    "transform": {}
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.4.3"
   }
 }
