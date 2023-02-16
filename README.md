@@ -19,7 +19,6 @@ npm run dev
 
 ## Todo
 ### Features
-* Rotation collision
 * Scoring system
 * Add all tetronimoes
 * Gameplay flow:
@@ -33,6 +32,7 @@ npm run dev
 * Make examples with custum "renderer"
 * Debug mode
 * NPM package
+* JSDoc
 
 ### Bugs
 * blocks on the grid dont fall all the way down to the next occupied square when a row clears
