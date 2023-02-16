@@ -1,6 +1,8 @@
+# vanilla-tetris
 Simple tetris game in vanilla javascript for learning.
 
-# Usage
+## Usage
+Include in your own scripts:
 ```
 import { Tetris } from './src/tetris.mjs'
 
@@ -9,9 +11,14 @@ const tetris = new Tetris(container, 300);
 
 tetris.init();
 ```
+Try it out by downloading repository and:
+```
+npm install
+npm run dev
+```
 
-# Todo
-## Features
+## Todo
+### Features
 * Rotation collision
 * Scoring system
 * Add all tetronimoes
@@ -27,5 +34,5 @@ tetris.init();
 * Debug mode
 * NPM package
 
-## Bugs
+### Bugs
 * blocks on the grid dont fall all the way down to the next occupied square when a row clears
