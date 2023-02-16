@@ -5,12 +5,10 @@ class CollisionDetector {
 
   colliding(grid, shape) {
     this.activeShapePositions = this.#shapePosition(grid, shape);
-
     return {
       left: this.#collidingLeft(grid),
       right: this.#collidingRight(grid),
-      bot: this.#collidingBot(grid),
-      rotation: this.#collidingRotation(grid)
+      bot: this.#collidingBot(grid)
     };
 
   }
@@ -77,7 +75,12 @@ class CollisionDetector {
     return false;
   }
 
-  #collidingRotation(grid) {
+  rotationColliding(grid, rotatedShape) {
+    const positions = this.#shapePosition(grid, rotatedShape);
+
+    for (const square of positions) {
+      console.log(square);
+    }
     return false;
   }
 }

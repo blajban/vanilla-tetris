@@ -41,6 +41,8 @@ class Shape {
       col: startCol
     }
 
+    this.shape = shape;
+
     this.rotation = shape;
 
     this.currentRotation = 0;

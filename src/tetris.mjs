@@ -48,7 +48,7 @@ class Tetris {
 
       this.renderer.render(this.game.grid);
     });
-
+/*
     this.#setLevelInterval();
 
     this.gameInterval = setInterval(() => {
@@ -58,11 +58,12 @@ class Tetris {
         console.log(`Level ${this.level}!`);
         clearInterval(this.levelInterval);
         this.#setLevelInterval();
-        
       }
       this.levelCounter++;
     }, 50);
+    */
   }
+  
 }
 
 

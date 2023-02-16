@@ -73,6 +73,7 @@ class Game {
       square.occupied = true;
     })
 
+    // Move to shapes
     const shapesArr = Object.keys(shapes);
     const randomIndex = Math.floor(Math.random() * shapesArr.length);
     const randomKey = shapesArr[randomIndex]
@@ -166,8 +167,15 @@ class Game {
   }
 
   rotate() {
-    this.activeShape.rotate();
-    this.#update();
+    const nextRotation = new Shape(this.activeShape.shape);
+    for (let i = this.activeShape.currentRotation; i < this.activeShape.currentRotation + 1; i++) {
+      nextRotation.rotate();
+    }
+
+    if (!this.collisionDetector.rotationColliding(this.grid, nextRotation)) {
+      this.activeShape.rotate();
+      this.#update();
+    }
   }
 }
 
