@@ -1,5 +1,5 @@
 # vanilla-tetris
-Simple tetris game in vanilla javascript for learning.
+Simple tetris game in vanilla javascript made for learning.
 
 ## Usage
 Include in your own scripts:
