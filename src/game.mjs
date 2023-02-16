@@ -131,7 +131,6 @@ class Game {
     }
 
     this.points += rowPoints;
-    console.log(this.points);
   }
 
   #update() {

@@ -76,11 +76,12 @@ class CollisionDetector {
   }
 
   rotationColliding(grid, rotatedShape) {
-    const positions = this.#shapePosition(grid, rotatedShape);
+    //TODO
+    /*const positions = this.#shapePosition(grid, rotatedShape);
 
     for (const square of positions) {
       console.log(square);
-    }
+    }*/
     return false;
   }
 }
