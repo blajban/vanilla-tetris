@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --collectCoverage",
-    "dev": "node server.js"
+    "dev": "node server.mjs"
   },
   "type": "module",
   "jest": {

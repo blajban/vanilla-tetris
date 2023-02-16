@@ -6,8 +6,16 @@ import { CollisionDetector } from './collisionDetector.mjs';
 const rowPoints = 10;
 
 
-
+/**
+ * Represents a game of Tetris.
+ * @constructor
+ * @param {number} width - The width of the game grid.
+ * @param {number} height - The height of the game grid.
+ */
 class Game {
+  /**
+   * Creates the game grid and initializes the game state.
+   */
   constructor(width, height) {
     this.width = width;
 
@@ -32,6 +40,10 @@ class Game {
     this.#update();
   }
 
+  /**
+   * Clears the active and bounding box properties of all squares on the game grid.
+   * @private
+   */
   #clearGrid() {
     for (const row in this.grid) {
       for (const col in this.grid[row]) {
@@ -45,6 +57,11 @@ class Game {
     }
   }
 
+  /**
+   * Calls a callback function for each square in the active shape's bounding box.
+   * @private
+   * @param {function} callback - The function to call for each square in the active shape's bounding box.
+   */
   #loopBlock(callback) {
     let gridCol = this.activeShape.position.col;
     const gridRow = this.activeShape.position.row;
@@ -68,6 +85,10 @@ class Game {
     }
   }
 
+  /**
+   * Creates a new active shape and adds it to the blocks array.
+   * @private
+   */
   #newBlock() {
     this.#loopBlock((square) => {
       square.occupied = true;
@@ -81,6 +102,10 @@ class Game {
     this.blocks.push(this.activeShape);
   }
 
+  /**
+   * Checks each row on the game grid for completed lines, clears them, and updates the game score.
+   * @private
+   */
   #checkRows() {
     for (const row in this.grid) {
       let rowFull = 0;
@@ -96,6 +121,11 @@ class Game {
     }
   }
 
+  /**
+   * Clears the specified row on the game grid, moves all occupied squares above it down one row, and updates the game score.
+   * @private
+   * @param {number} rowToClear - The index of the row to clear.
+   */
   #clearRow(rowToClear) {
     for (const col in this.grid[rowToClear]) {
       this.grid[rowToClear][col].occupied = false;
@@ -133,6 +163,10 @@ class Game {
     this.points += rowPoints;
   }
 
+  /**
+   * Updates the game grid with the active shape's position and bounding box.
+   * @private
+   */
   #update() {
     this.#clearGrid();
     this.#loopBlock((square) => {
@@ -140,6 +174,9 @@ class Game {
     });
   }
 
+  /**
+   * Moves the active shape down one row, clears completed rows, and creates a new active shape if necessary.
+   */
   moveDown() {
     if (!this.collisionDetector.colliding(this.grid, this.activeShape).bot) {
       this.activeShape.position.row++;
@@ -151,6 +188,9 @@ class Game {
     this.#checkRows();
   }
 
+  /**
+   * Moves the active shape to the right.
+   */
   moveRight() {
     if (!this.collisionDetector.colliding(this.grid, this.activeShape).right) {
       this.activeShape.position.col++;
@@ -158,6 +198,9 @@ class Game {
     }
   }
 
+  /**
+   * Moves the active shape to the left.
+   */
   moveLeft() {
     if (!this.collisionDetector.colliding(this.grid, this.activeShape).left) {
       this.activeShape.position.col--;
@@ -165,6 +208,9 @@ class Game {
     }
   }
 
+  /**
+   * Rotates the active shape.
+   */
   rotate() {
     const copy = new Shape(this.activeShape.shape);
     for (let i = 0; i < this.activeShape.currentRotation + 1; i++) {

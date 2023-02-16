@@ -27,7 +27,16 @@ const shapes = {
   ]
 };
 
+/**
+ * Represents a tetronimo.
+ * @class
+ */
 class Shape {
+  /**
+   * Creates a new instance of the Shape class.
+   * @constructor
+   * @param {Array<Array<Object>>} shape - The shape definition with all its rotation positions.
+   */
   constructor(shape) {
     this.boundingBox = [
       [false, false, false, false],
@@ -48,6 +57,10 @@ class Shape {
     this.set();
   }
 
+  /**
+   * Clears the bounding box for the shape. Used before setting a new rotation.
+   * @private
+   */
   clear() {
     for (let row = 0; row < this.boundingBox.length; row++) {
       for (let col = 0; col < this.boundingBox[row].length; col++) {
@@ -56,12 +69,19 @@ class Shape {
     }
   }
 
+  /**
+   * Sets the bounding box for the shape based on the current rotation.
+   * @private
+   */
   set() {
     for (const square of this.shape[this.currentRotation]) {
       this.boundingBox[square.row][square.col] = true;
     }
   }
 
+  /**
+   * Rotates the shape.
+   */
   rotate() {
     this.clear();
     this.currentRotation++;
