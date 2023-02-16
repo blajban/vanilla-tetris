@@ -2,13 +2,31 @@
 import { Renderer } from './renderer.mjs';
 import { Game } from './game.mjs';
 
-const width = 10;
-const height = 20;
+const defaultProps = {
+  width: 10,
+  height: 20,
+  colors: {
+      block: 'red',
+      bg: 'aquamarine',
+      occupied: 'purple',
+      boundingBox: 'lightgray'
+  },
+  pxWidth: 300
+}
 
+/**
+ * Class representing a Tetris game.
+ */
 class Tetris {
-  constructor(parent, pxWidth) {
-    this.game = new Game(width, height);
-    this.renderer = new Renderer(parent, this.game.grid, width, pxWidth);
+  /**
+   * Create a Tetris game.
+   * @param {HTMLElement} parent - The parent element for the game's renderer.
+   * @param {Object} props - Object containing styling properties
+   */
+  constructor(parent, props = defaultProps) {
+    this.props = props;
+    this.game = new Game(this.props.width, this.props.height);
+    this.renderer = new Renderer(parent, this.game.grid, this.props.width, this.props.pxWidth, this.props.colors);
     this.renderer.render(this.game.grid);
     this.baseTick = 1000;
     this.level = 1;
@@ -18,6 +36,10 @@ class Tetris {
     this.levelCounter = 0;
   }
 
+  /**
+   * Sets the level interval for the game.
+   * @private
+   */
   #setLevelInterval() {
     this.levelInterval = setInterval(() => {
       this.game.moveDown();
@@ -25,6 +47,9 @@ class Tetris {
     }, this.baseTick / this.level);
   }
 
+  /**
+   * Initializes the game and sets up the event listeners and game loop.
+   */
   init() {
     window.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowLeft') {
