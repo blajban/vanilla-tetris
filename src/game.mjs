@@ -166,17 +166,17 @@ class Game {
   }
 
   rotate() {
-    // todo: get correct shape from original...
-    const copy = new Shape(shapes.straight);
+    const copy = new Shape(this.activeShape.shape);
     for (let i = 0; i < this.activeShape.currentRotation + 1; i++) {
       copy.rotate();
     }
 
-    if (!this.collisionDetector.rotationColliding(this.grid, this.activeShape, copy)) {
-      this.activeShape.rotate();
-      this.#update();
+    if (this.collisionDetector.rotationColliding(this.grid, this.activeShape, copy)) {
       return;
     }
+
+    this.activeShape.rotate();
+    this.#update();
   
   }
 
