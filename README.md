@@ -36,7 +36,6 @@ npm run dev
 ## Todo
 ### Features
 * Scoring system
-* Add all tetronimoes
 * Gameplay flow:
     * Start game
     * Game over when tetronimo spawns on occupied square
@@ -45,7 +44,7 @@ npm run dev
     * Buttons
     * View for next block
     * Points
-* Make examples with custum "renderer"
+* Make examples with custom "renderer"
 * Debug mode
 * Tests
 * NPM package
