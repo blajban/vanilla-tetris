@@ -17,12 +17,10 @@ const props = {
   width: 10,
   height: 20,
   colors: {
-    block: 'blue',
-    bg: 'lightgray',
-    occupied: 'purple',
-    boundingBox: ''
+    bg: 'lightgray'
   },
-  pxWidth: 600
+  pxWidth: 600,
+  debug: true
 }
 
 const tetris = new Tetris(container, props);
@@ -45,7 +43,6 @@ npm run dev
     * View for next block
     * Points
 * Make examples with custom "renderer"
-* Debug mode
 * Tests
 * NPM package
 * Update JSDocs
