@@ -171,6 +171,7 @@ class Game {
     this.#clearGrid();
     this.#loopBlock((square) => {
       square.active = true;
+      square.color = this.activeShape.color;
     });
   }
 

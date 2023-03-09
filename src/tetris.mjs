@@ -11,7 +11,8 @@ const defaultProps = {
       occupied: 'purple',
       boundingBox: 'lightgray'
   },
-  pxWidth: 300
+  pxWidth: 300,
+  debug: true
 }
 
 /**
@@ -26,7 +27,7 @@ class Tetris {
   constructor(parent, props = defaultProps) {
     this.props = props;
     this.game = new Game(this.props.width, this.props.height);
-    this.renderer = new Renderer(parent, this.game.grid, this.props.width, this.props.pxWidth, this.props.colors);
+    this.renderer = new Renderer(parent, this.game.grid, this.props.width, this.props.pxWidth, this.props.colors, this.props.debug);
     this.renderer.render(this.game.grid);
     this.baseTick = 1000;
     this.level = 1;

@@ -12,10 +12,11 @@ class Renderer {
    * @param {number} width - The width of the game grid in blocks.
    * @param {number} pxWidth - The width of the game grid in pixels.
    */
-  constructor(parent, grid, width, pxWidth, colors) {
+  constructor(parent, grid, width, pxWidth, colors, debug = false) {
     this.blockSize = pxWidth / width;
     this.parent = parent;
     this.colors = colors;
+    this.debug = debug;
     this.bg = document.createElement('div');
     this.bg.style.width = `${pxWidth}px`;
     this.bg.style.fontSize = '0';
@@ -30,9 +31,13 @@ class Renderer {
         grid[row][col]['dom'].style.display = 'inline-block';
         
         // debug
-        grid[row][col]['dom'].style.color = 'black';
-        grid[row][col]['dom'].style.fontSize = '10px';
-        grid[row][col]['dom'].innerHTML = `[${row},${col}]`;
+        
+        if (this.debug) {
+          grid[row][col]['dom'].style.color = 'black';
+          grid[row][col]['dom'].style.fontSize = '10px';
+          grid[row][col]['dom'].innerHTML = `[${row},${col}]`;
+        }
+        
 
 
 
@@ -50,14 +55,15 @@ class Renderer {
     for (const row in grid) {
       for (const col in grid[row]) {
         if (grid[row][col].active) {
-          grid[row][col].dom.style.backgroundColor = this.colors.block;
+          grid[row][col].dom.style.backgroundColor = grid[row][col].color;
           continue;
         } 
         if (grid[row][col].occupied) {
-          grid[row][col].dom.style.backgroundColor = this.colors.occupied;
+          //grid[row][col].dom.style.backgroundColor = this.colors.occupied;
+          grid[row][col].dom.style.backgroundColor = grid[row][col].color;
           continue;
-        } 
-        if (grid[row][col].boundingBox) {
+        }
+        if (this.debug && grid[row][col].boundingBox) {
           grid[row][col].dom.style.backgroundColor = this.colors.boundingBox;
           continue;
         }

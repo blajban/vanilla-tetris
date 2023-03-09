@@ -1,5 +1,6 @@
 const startCol = 3;
 
+/*
 const shapes = {
   straight: [
     [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 1, col: 3 } ],
@@ -44,6 +45,74 @@ const shapes = {
     [ { row: 0, col: 1 }, { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 2, col: 0} ]
   ]
 };
+*/
+
+const shapes = {
+  straight: {
+    pos: [
+      [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 1, col: 3 } ],
+      [ { row: 0, col: 2 }, { row: 1, col: 2 }, { row: 2, col: 2 }, { row: 3, col: 2 } ],
+      [ { row: 2, col: 0 }, { row: 2, col: 1 }, { row: 2, col: 2 }, { row: 2, col: 3 } ],
+      [ { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }, { row: 3, col: 1 } ]
+    ],
+    color: "red"
+  },
+  square: {
+    pos: [
+      [ { row: 0, col: 1 }, { row: 0, col: 2 }, { row: 1, col: 1 }, { row: 1, col: 2} ],
+      [ { row: 0, col: 1 }, { row: 0, col: 2 }, { row: 1, col: 1 }, { row: 1, col: 2} ],
+      [ { row: 0, col: 1 }, { row: 0, col: 2 }, { row: 1, col: 1 }, { row: 1, col: 2} ],
+      [ { row: 0, col: 1 }, { row: 0, col: 2 }, { row: 1, col: 1 }, { row: 1, col: 2} ]
+    ],
+    color: "yellow"
+  },
+  T: {
+    pos: [
+      [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 2, col: 1} ],
+      [ { row: 1, col: 0 }, { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1} ],
+      [ { row: 0, col: 1 }, { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2} ],
+      [ { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 2, col: 1} ]
+    ],
+    color: "purple"
+  },
+  L: {
+    pos: [
+      [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 0, col: 2} ],
+      [ { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }, { row: 2, col: 2} ],
+      [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 2, col: 0} ],
+      [ { row: 0, col: 0 }, { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1} ]
+    ],
+    color: "blue"
+  },
+  J: {
+    pos: [
+      [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 0, col: 0} ],
+      [ { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }, { row: 0, col: 2} ],
+      [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 2, col: 2} ],
+      [ { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 0 }, { row: 2, col: 1} ]
+    ],
+    color: "blue"
+  },
+  S: {
+    pos: [
+      [ { row: 0, col: 1 }, { row: 0, col: 2 }, { row: 1, col: 0 }, { row: 1, col: 1} ],
+      [ { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 2, col: 2} ],
+      [ { row: 2, col: 0 }, { row: 2, col: 1 }, { row: 1, col: 1 }, { row: 1, col: 2} ],
+      [ { row: 0, col: 0 }, { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 2, col: 1} ]
+    ],
+    color: "green"
+  },
+  Z: {
+    pos: [
+      [ { row: 0, col: 0 }, { row: 0, col: 1 }, { row: 1, col: 1 }, { row: 1, col: 2} ],
+      [ { row: 0, col: 2 }, { row: 1, col: 1 }, { row: 1, col: 2 }, { row: 2, col: 1} ],
+      [ { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 2, col: 1 }, { row: 2, col: 2} ],
+      [ { row: 0, col: 1 }, { row: 1, col: 0 }, { row: 1, col: 1 }, { row: 2, col: 0} ]
+    ],
+    color: "lightblue"
+  }
+};
+
 
 /**
  * Represents a tetronimo.
@@ -70,6 +139,8 @@ class Shape {
 
     this.shape = shape;
 
+    this.color = shape.color;
+
     this.currentRotation = 0;
 
     this.set();
@@ -92,7 +163,7 @@ class Shape {
    * @private
    */
   set() {
-    for (const square of this.shape[this.currentRotation]) {
+    for (const square of this.shape.pos[this.currentRotation]) {
       this.boundingBox[square.row][square.col] = true;
     }
   }
